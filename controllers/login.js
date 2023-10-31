@@ -2,7 +2,7 @@ const { decryptPassword } = require("../helpers/encryption");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const login = async (req, res) => {
-  console.log("Logging in user with @login controller");
+  console.log(`Logging in user ${req.body.email} with @login controller`);
   try {
     const { email, password } = req.body;
 
@@ -19,13 +19,16 @@ const login = async (req, res) => {
     }
 
     const isMatch = decryptPassword(password, user.password);
+
     if (isMatch) {
       const token = jwt.sign({ name: user.name, email: user.email }, process.env.PASSKEY, {
         expiresIn: "1d",
       });
-
-      res.status(200).send({ msg: "User logged in succesfully", token });
+      console.log(`User ${email} logged in succesfully`);
+      return res.status(200).send({ msg: "User logged in succesfully", token });
     }
+    console.log(`User ${email} password is incorrect`);
+    res.status(400).json({ msg: "Password is incorrect" });
   } catch (error) {
     console.log(error);
   }
