@@ -5,7 +5,6 @@ const express = require("express");
 const app = express();
 const mainRouter = require("./routes/main");
 const connectDB = require("./db/connect");
-const crypto = require("crypto");
 
 app.use(express.json());
 app.get("/", (req, res) => {
