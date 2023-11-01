@@ -1,6 +1,6 @@
-const { decryptPassword } = require("../helpers/encryption");
+const { decryptPassword } = require("../../helpers/encryption");
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const User = require("../../models/User");
 const login = async (req, res) => {
   console.log(`Logging in user ${req.body.email} with @login controller`);
   try {
@@ -21,7 +21,7 @@ const login = async (req, res) => {
     const isMatch = decryptPassword(password, user.password);
 
     if (isMatch) {
-      const token = jwt.sign({ name: user.name, email: user.email }, process.env.PASSKEY, {
+      const token = jwt.sign({ id: user.id, email: user.email }, process.env.PASSKEY, {
         expiresIn: "1d",
       });
       console.log(`User ${email} logged in succesfully`);
