@@ -5,7 +5,7 @@ const getAllApplications = async (req, res) => {
 
   if (!userId) {
     console.log(
-      "The user applications, at @getAllApplications controller, did not succeed due to missing fields"
+      "The user applications, at @getAllApplications controller, did not succeed due to missing userId"
     );
     return res.status(400).json({ msg: "Please enter all fields" });
   }
@@ -14,7 +14,8 @@ const getAllApplications = async (req, res) => {
 
   try {
     const applications = await JobApplication.find({ userId });
-    res.status(200).send({ data: applications });
+
+    return res.status(200).send({ data: applications });
   } catch (error) {
     console.log(error);
     res
