@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../../models/User");
 const login = async (req, res) => {
   console.log(`Logging in user ${req.body.email} with @login controller`);
+  
   try {
     const { email, password } = req.body;
 
@@ -31,6 +32,7 @@ const login = async (req, res) => {
     res.status(400).json({ msg: "Password is incorrect" });
   } catch (error) {
     console.log(error);
+    res.status(500).send({ msg: "There was a problem logging in the user" });
   }
 };
 
