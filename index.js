@@ -5,8 +5,9 @@ const express = require("express");
 const app = express();
 const mainRouter = require("./routes/main");
 const connectDB = require("./db/connect");
-const crypto = require("crypto");
+const cors = require("cors");
 
+app.use(cors());
 app.use(express.json());
 app.get("/", (req, res) => {
   res.send("<h1>Job Tracker API</h1>");
