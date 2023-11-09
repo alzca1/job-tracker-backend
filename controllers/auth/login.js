@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../../models/User");
 const login = async (req, res) => {
   console.log(`Logging in user ${req.body.email} with @login controller`);
-  
+
   try {
     const { email, password } = req.body;
 
@@ -15,7 +15,7 @@ const login = async (req, res) => {
     console.log("Let's find your user in the db...");
     const user = await User.findOne({ email });
     if (!user) {
-      console.login("Unfortunately we can't find you in the db :(");
+      console.log("Unfortunately we can't find you in the db :(");
       return res.status(400).json({ msg: "User does not exist" });
     }
 
