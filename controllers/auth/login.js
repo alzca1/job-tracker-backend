@@ -22,11 +22,19 @@ const login = async (req, res) => {
     const isMatch = decryptPassword(password, user.password);
 
     if (isMatch) {
-      const token = jwt.sign({ id: user.id, email: user.email }, process.env.PASSKEY, {
-        expiresIn: "1d",
-      });
+      const token = jwt.sign(
+        { id: user.id, email: user.email, name: user.name },
+        process.env.PASSKEY,
+        {
+          expiresIn: "1d",
+        }
+      );
       console.log(`User ${email} logged in succesfully`);
-      return res.status(200).send({ msg: "User logged in succesfully", token });
+      return res.status(200).send({
+        name: user.name,
+        email: user.email,
+        token: token,
+      });
     }
     console.log(`User ${email} password is incorrect`);
     res.status(400).json({ msg: "Password is incorrect" });
