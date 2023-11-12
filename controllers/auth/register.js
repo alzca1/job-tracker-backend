@@ -25,7 +25,7 @@ const register = async (req, res) => {
 
     console.log("User registered successfully");
 
-    res.status(200).send({ msg: "User registered successfully", token });
+    res.status(200).send({ name: user.name, email: user.email, token: token });
   } catch (error) {
     console.log("There was a problem registering the user while executing @register controller");
 
