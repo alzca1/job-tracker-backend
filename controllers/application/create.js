@@ -2,7 +2,9 @@ const JobApplication = require("../../models/JobApplication");
 
 const createApplication = async (req, res) => {
   console.log("Creating new application with @createApplication controller");
-  const { companyName, position, status, userId, jobUrl, dateApplied } = req.body;
+  const { companyName, position, status, jobUrl, dateApplied } = req.body;
+
+  const {id: userId, email} = req.user;
 
   if (!companyName || !position || !userId) {
     console.log(
