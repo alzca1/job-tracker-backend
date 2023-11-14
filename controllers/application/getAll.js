@@ -15,7 +15,7 @@ const getAllApplications = async (req, res) => {
   try {
     const applications = await JobApplication.find({ userId });
 
-    return res.status(200).send({ data: applications });
+    return res.status(200).send(applications);
   } catch (error) {
     console.log(error);
     res
