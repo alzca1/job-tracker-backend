@@ -27,6 +27,32 @@ const jobApplicationSchema = new Schema({
     type: String,
     required: false,
   },
+  minimumExperience: {
+    type: String,
+    required: false,
+  },
+  educationRequired: {
+    type: String,
+    required: false,
+  },
+  residenceRequired: {
+    type: String,
+    required: false,
+  },
+  availability: {
+    type: String,
+    required: false,
+  },
+  salary: {
+    type: String,
+    required: false,
+  },
+  variable: {
+    type: String,
+    required: false,
+  },
+  socialBenefits: [String],
+  historic: [{ _id: false, date: Date, content: String }],
 });
 
 const JobApplication = mongoose.model("JobApplication", jobApplicationSchema);
