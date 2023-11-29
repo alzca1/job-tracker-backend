@@ -1,24 +1,28 @@
+const { ObjectId } = require("mongodb");
 const JobApplication = require("../../models/JobApplication");
 
 const updateApplication = async (req, res) => {
   const { id: userId } = req.user;
-  const { applicationId, updateData } = req.body;
+  const { _id } = req.body;
+  const updateData = req.body;
 
-  if (!userId || !applicationId) {
+  delete updateData._id;
+
+  if (!userId || !_id) {
     console.log(
-      "The user application, at @updateApplication controller, did not succeed due to missing userId and/or applicationId"
+      "The user application, at @updateApplication controller, did not succeed due to missing userId and/or _id"
     );
     return res.status(400).json({ msg: "Please enter all fields" });
   }
 
-  console.log(`Updating application with id ${applicationId} with @updateApplication controller`);
+  console.log(`Updating application with id ${_id} with @updateApplication controller`);
 
   try {
-    const updatedApplication = await JobApplication.findByIdAndUpdate(applicationId, updateData);
+    const updatedApplication = await JobApplication.findByIdAndUpdate(_id, updateData);
 
     if (!updatedApplication) {
       console.log(
-        "The application with id ${applicationId} was not found and, therefore, update could not be completed"
+        "The application with id ${_id} was not found and, therefore, update could not be completed"
       );
       return res.status(400).json({ msg: "The application was not found" });
     }
