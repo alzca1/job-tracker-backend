@@ -9,6 +9,7 @@ const authenticationMiddleware = require("../middleware/auth");
 const getAllApplications = require("../controllers/application/getAll");
 const updateApplication = require("../controllers/application/update");
 const getApplication = require("../controllers/application/get");
+const getJobInfo = require("../controllers/application/getJobInfo");
 
 //## LOGIN ROUTES ## //
 router.route("/register").post(register);
@@ -22,5 +23,6 @@ router
 router.route("/application/getAll").get(authenticationMiddleware, getAllApplications);
 router.route("/application/:applicationId").get(authenticationMiddleware, getApplication);
 router.route("/application/update").put(authenticationMiddleware, updateApplication);
+router.route("/application/getjobinfo").post(getJobInfo);
 
 module.exports = router;
