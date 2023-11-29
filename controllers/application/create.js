@@ -2,9 +2,21 @@ const JobApplication = require("../../models/JobApplication");
 
 const createApplication = async (req, res) => {
   console.log("Creating new application with @createApplication controller");
-  const { companyName, position, status, jobUrl, dateApplied } = req.body;
+  const {
+    companyName,
+    position,
+    status,
+    jobUrl,
+    dateApplied,
+    minimumExperience,
+    educationRequired,
+    residenceRequired,
+    availability,
+    salary,
+    socialBenefits,
+  } = req.body;
 
-  const {id: userId, email} = req.user;
+  const { id: userId, email } = req.user;
 
   if (!companyName || !position || !userId) {
     console.log(
@@ -21,6 +33,13 @@ const createApplication = async (req, res) => {
       userId: userId,
       dateApplied: dateApplied || new Date(),
       jobUrl: jobUrl || "",
+      minimumExperience: minimumExperience,
+      educationRequired: educationRequired || "",
+      residenceRequired: residenceRequired || "",
+      availability: availability || "",
+      salary: salary || "",
+      socialBenefits: socialBenefits || [],
+      historic: [{ date: new Date(), content: `${status} status` }],
     });
 
     return res.status(200).send({ msg: "Application created successfully", newApplication });
