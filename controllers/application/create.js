@@ -36,8 +36,9 @@ const createApplication = async (req, res) => {
       minimumExperience: minimumExperience || "",
       educationRequired: educationRequired || "",
       residenceRequired: residenceRequired || "",
-      availability: availability || "",
+      availabilityRequired: availability || "",
       salary: salary || "",
+      variable: variable || "",
       socialBenefits: socialBenefits || [],
       historic: [{ date: new Date(), content: `${status} status` }],
     });
