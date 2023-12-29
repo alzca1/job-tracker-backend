@@ -13,7 +13,9 @@ const getAllApplications = async (req, res) => {
   console.log(`Requesting all applications for user ${userId} with @getAllApplications controller`);
 
   try {
-    const applications = await JobApplication.find({ userId });
+    const applications = await JobApplication.find({ userId }).select(
+      "companyName position dateApplied status"
+    );
 
     return res.status(200).send(applications);
   } catch (error) {

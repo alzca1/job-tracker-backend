@@ -33,7 +33,7 @@ const createApplication = async (req, res) => {
       userId: userId,
       dateApplied: dateApplied || new Date(),
       jobUrl: jobUrl || "",
-      minimumExperience: minimumExperience,
+      minimumExperience: minimumExperience || "",
       educationRequired: educationRequired || "",
       residenceRequired: residenceRequired || "",
       availability: availability || "",
