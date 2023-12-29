@@ -39,7 +39,11 @@ const jobApplicationSchema = new Schema({
     type: String,
     required: false,
   },
-  availability: {
+  availabilityRequired: {
+    type: String,
+    required: false,
+  },
+  languagesRequired: {
     type: String,
     required: false,
   },
