@@ -11,7 +11,7 @@ const createApplication = async (req, res) => {
     minimumExperience,
     educationRequired,
     residenceRequired,
-    availability,
+    availabilityRequired,
     salary,
     socialBenefits,
   } = req.body;
@@ -36,7 +36,7 @@ const createApplication = async (req, res) => {
       minimumExperience: minimumExperience || "",
       educationRequired: educationRequired || "",
       residenceRequired: residenceRequired || "",
-      availabilityRequired: availability || "",
+      availabilityRequired: availabilityRequired || "",
       salary: salary || "",
       variable: variable || "",
       socialBenefits: socialBenefits || [],
