@@ -14,6 +14,7 @@ const createApplication = async (req, res) => {
     availabilityRequired,
     salary,
     socialBenefits,
+    variable,
   } = req.body;
 
   const { id: userId, email } = req.user;
