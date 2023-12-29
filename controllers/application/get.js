@@ -14,7 +14,9 @@ const getApplication = async (req, res) => {
   console.log("Requesting application with @getApplication controller");
 
   try {
-    const application = await JobApplication.findById(applicationId);
+    const application = await JobApplication.findById(applicationId).select(
+      "jobUrl minimumExperience educationRequired residenceRequired availabilityRequired languagesRequired  salary  variable  socialBenefits  historic"
+    );
 
     if (!application) {
       console.log(
@@ -23,6 +25,7 @@ const getApplication = async (req, res) => {
 
       return res.status(204).json({ msg: "The application was not found" });
     }
+    return res.status(200).send(application);
   } catch (error) {
     console.log(error);
     res.status(500).send(error);
